@@ -9,13 +9,13 @@ This is an app where a user logs in and makes entries on movies they have seen, 
 
 ##PAGES - WIREFRAMES  
 Login/Register  
-!()[ images/login.JPG ]  
+![](images/login.JPG )  
 See all your movies 
-!()[ images/allMovies.JPG ]     
+![](images/allMovies.JPG )     
 Submit a new movie 
-!()[images/addMovie.JPG ]    
+![](images/addMovie.JPG )    
 Update/Delete movie  
-!()[/images/update:delete.JPG ]
+![](images/update:delete.JPG )  
   
 ##ADDITIONAL DIFFICULTIES  
 -Use of API to auto-populate forms  
