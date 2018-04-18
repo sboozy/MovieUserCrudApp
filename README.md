@@ -8,10 +8,14 @@ I watch a ton of movies - good, bad... I really don't descriminate.  And many ti
 This is an app where a user logs in and makes entries on movies they have seen, with the ability to rate that movie (1 to 5 stars), can view all the movies they have seen, can edit their previous entries or delete an entire entry ( you know, maybe if they decide they no longer want all their friends to know how much they enjoyed Twilight)  ¯\_(ツ)_/¯  
 
 ##PAGES - WIREFRAMES  
-Login/Register
-See all your movies    
-Submit a new movie  
+Login/Register  
+!()[https://github.com/sboozy/MovieUserCrudApp/blob/master/images/login.JPG ]  
+See all your movies 
+!()[https://github.com/sboozy/MovieUserCrudApp/blob/master/images/allMovies.JPG ]     
+Submit a new movie 
+!()[https://github.com/sboozy/MovieUserCrudApp/blob/master/images/addMovie.JPG ]    
 Update/Delete movie  
+!()[https://github.com/sboozy/MovieUserCrudApp/blob/master/images/update:delete.JPG ]
   
 ##ADDITIONAL DIFFICULTIES  
 -Use of API to auto-populate forms  
