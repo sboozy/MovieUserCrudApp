@@ -9,13 +9,13 @@ This is an app where a user logs in and makes entries on movies they have seen, 
 
 ##PAGES - WIREFRAMES  
 Login/Register  
-!()[https://github.com/sboozy/MovieUserCrudApp/blob/master/images/login.JPG ]  
+!()[ images/login.JPG ]  
 See all your movies 
-!()[https://github.com/sboozy/MovieUserCrudApp/blob/master/images/allMovies.JPG ]     
+!()[ images/allMovies.JPG ]     
 Submit a new movie 
-!()[https://github.com/sboozy/MovieUserCrudApp/blob/master/images/addMovie.JPG ]    
+!()[images/addMovie.JPG ]    
 Update/Delete movie  
-!()[https://github.com/sboozy/MovieUserCrudApp/blob/master/images/update:delete.JPG ]
+!()[/images/update:delete.JPG ]
   
 ##ADDITIONAL DIFFICULTIES  
 -Use of API to auto-populate forms  
