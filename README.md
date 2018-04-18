@@ -8,7 +8,7 @@ I watch a ton of movies - good, bad... I really don't descriminate.  And many ti
 This is an app where a user logs in and makes entries on movies they have seen, with the ability to rate that movie (1 to 5 stars), can view all the movies they have seen, can edit their previous entries or delete an entire entry ( you know, maybe if they decide they no longer want all their friends to know how much they enjoyed Twilight)  ¯\_(ツ)_/¯  
 
 ##PAGES - WIREFRAMES  
-Login/Register  
+Login/Register
 See all your movies    
 Submit a new movie  
 Update/Delete movie  
