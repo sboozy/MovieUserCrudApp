@@ -17,6 +17,9 @@ Submit a new movie
 Update/Delete movie  
 ![](images/update:delete.JPG )  
   
+##TABLES  
+![](images/tableLayout.JPG)
+
 ##ADDITIONAL DIFFICULTIES  
 -Use of API to auto-populate forms  
 -Authenting a user and saving a session  
