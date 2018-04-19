@@ -9,6 +9,14 @@ VALUES
 ('Dirty Dancing', 1987, 'Expecting the usual tedium that accompanies a summer in the Catskills with her family, 17-year-old Frances ''Baby'' Houseman is surprised to find herself stepping into the shoes of a professional hoofer – and unexpectedly falling in love.');
 
 
+INSERT INTO director (name)
+VALUES
+('Mel Gibson'),
+('Roger Allers'),
+('Rob Minkoff'),
+('Frank Darabont'),
+('Emile Ardolino');
+
 INSERT INTO movie_director (movie_id, dir_id)
 VALUES
 (1,1),
@@ -17,13 +25,16 @@ VALUES
 (3,4),
 (4,5);
 
-INSERT INTO director (name)
+
+INSERT INTO genre (genre_type)
 VALUES
-('Mel Gibson'),
-('Roger Allers'),
-('Rob Minkoff'),
-('Frank Darabont'),
-('Emile Ardolino');
+('Drama'),
+('Action'),
+('Family'),
+('Animation'),
+('Crime'),
+('Music'),
+('Romance');
 
 INSERT INTO movie_genre (movie_id, genre_id)
 VALUES
@@ -37,13 +48,3 @@ VALUES
 (4,1),
 (4,6),
 (4,7);
-
-INSERT INTO genre (genre_type)
-VALUES
-('Drama'),
-('Action'),
-('Family'),
-('Animation'),
-('Crime'),
-('Music'),
-('Romance');
