@@ -22,7 +22,7 @@ Update/Delete movie
 
 ##ADDITIONAL DIFFICULTIES  
 -Use of API to auto-populate forms  
--Authenting a user and saving a session  
+-Authenticating a user and saving a session  
 -Leaving myself enough time to make this thing pretty
   
 ##TECHNOLOGIES
