@@ -1,35 +1,72 @@
 const db = require ('../config/connection');
 
+//add description later
 function getAllMovies() {
+  // console.log("this is db:", db.tx);
   return db.any(`
-    SELECT title, release_year, director.name, genre_type
+    SELECT DISTINCT title, director, release_year
     FROM movie
-    JOIN movie_director
-    ON movie.id = movie_director.movie_id
-    JOIN director
-    ON movie_director.dir_id = director.id
     JOIN movie_genre
     ON movie.id = movie_genre.movie_id
     JOIN genre
     ON movie_genre.genre_id = genre.id`)
 }
 
-function getOneMovie() {
+//add description later
+function getOneMovie(id) {
   return db.one(`
-    SELECT title, release_year, director.name, genre_type
+    SELECT DISTINCT movie.id, movie.title, movie.director, movie.release_year, movie_genre.genre_id, genre.genre_type
     FROM movie
-    JOIN movie_director
-    ON movie.id = movie_director.movie_id
-    JOIN director
-    ON movie_director.dir_id = director.id
     JOIN movie_genre
     ON movie.id = movie_genre.movie_id
     JOIN genre
     ON movie_genre.genre_id = genre.id
-    WHERE movie.id = $1`
+    WHERE movie.id = $1
+    `, id
+  )
+}
+
+//add description later
+function getOneDirector(id) {
+  return db.one(`
+    SELECT movie.director, movie.title, movie.release_year
+    FROM movie
+    WHERE director = $1
+    ORDER BY movie.release_year`
     , id
   );
 }
 
-function get
+function getOneGenre(id) {
+  return db.one(`
+    SELECT genre.id, genre_type, movie.title
+    FROM genre
+    JOIN movie_genre
+    ON genre.id = movie_genre.genre_id
+    JOIN movie
+    ON movie_genre.movie_id = movie.id
+    WHERE genre.id = $1`
+    , id
+  );
+}
 
+function createOne (entry) {
+  db.one(`INSERT INTO movie (title, director, release_year, description, genre_id)
+      VALUES ($/title/, $/director/, $/release_year/, $/description/, genre_id)
+      RETURNING *
+      `, entry)
+}
+
+module.exports = {
+  getAllMovies,
+  getOneMovie,
+  getOneDirector,
+  getOneGenre
+}
+    // SELECT movie.id, movie.title, movie.director, movie.release_year, movie_genre.genre_id, genre.genre_type
+    // FROM movie
+    // JOIN movie_genre
+    // ON movie.id = movie_genre.movie_id
+    // JOIN genre
+    // ON movie_genre.genre_id = genre.id
+    // WHERE movie.id = $1

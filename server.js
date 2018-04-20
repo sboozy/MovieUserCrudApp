@@ -1,10 +1,26 @@
+const path = require('path');
 const express = require('express');
-const logger = require('morgan')
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 
+const movieRouter = require('./route/movieRouter');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+app.use(logger('dev'));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+
+app.get('/', (req, res) => {
+  res.send('Its movie time people!');
+});
+
+app.use('/movies', movieRouter);
 
 app.listen(PORT, () => {
   console.log(`Holy Popcorn, its movie input time on port ${PORT}!`);
