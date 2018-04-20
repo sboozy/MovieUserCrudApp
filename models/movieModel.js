@@ -4,7 +4,7 @@ const db = require ('../config/connection');
 function getAllMovies() {
   // console.log("this is db:", db.tx);
   return db.any(`
-    SELECT DISTINCT title, director, release_year
+    SELECT DISTINCT movie.id, title, director, release_year
     FROM movie
     JOIN movie_genre
     ON movie.id = movie_genre.movie_id
@@ -15,13 +15,14 @@ function getAllMovies() {
 //add description later
 function getOneMovie(id) {
   return db.one(`
-    SELECT DISTINCT movie.id, movie.title, movie.director, movie.release_year, movie_genre.genre_id, genre.genre_type
+    SELECT movie.id, movie.title, movie.director, movie.release_year, movie_genre.genre_id, genre.genre_type
     FROM movie
     JOIN movie_genre
     ON movie.id = movie_genre.movie_id
     JOIN genre
     ON movie_genre.genre_id = genre.id
     WHERE movie.id = $1
+    LIMIT 1
     `, id
   )
 }

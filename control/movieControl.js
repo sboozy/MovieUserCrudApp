@@ -14,11 +14,9 @@ function getAll(req, res, next) {
 }
 
 function getMovie(req, res, next) {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   movieDB.getOneMovie(req.params.id)
-  console.log('whole query---->',movieDB.getOneMovie(req.params.id))
   .then(data => {
-    console.log(data);
     res.locals.movie = data;
     next();
   })
