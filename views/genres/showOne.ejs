@@ -1,0 +1,16 @@
+<% include ../partials/boilerplate %>
+
+<h1>All movies in one Genre</h1>
+
+<h2><%= genre[0].type %></h2>
+
+<p><% genre.forEach((movie) => { %>
+  <a href="http://localhost:3000/movies/<%= movie.id%>"> <!-- WARNING:this is hardcoded to localhost:3000 -->
+    <h3><%= movie.title %></h3></a>
+  <% }) %>
+</p>
+
+
+
+
+<% include ../partials/end %>

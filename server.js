@@ -4,6 +4,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const movieRouter = require('./route/movieRouter');
+const genreRouter = require('./route/genreRouter');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/movies', movieRouter);
+app.use('/genre', genreRouter);
 
 app.listen(PORT, () => {
   console.log(`Holy Popcorn, its movie input time on port ${PORT}!`);

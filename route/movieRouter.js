@@ -17,5 +17,6 @@ movieRouter.route('/')
 
 movieRouter.route('/:id')
   .get(movieControl.getMovie, movieViewControl.sendMovie, sendError)
+  // .get(movieControl.getDirector, movieViewControl.sendDir, sendError)
 
 module.exports = movieRouter;

@@ -27,20 +27,25 @@ function getOneMovie(id) {
   )
 }
 
-//add description later
-function getOneDirector(id) {
-  return db.one(`
-    SELECT movie.director, movie.title, movie.release_year
-    FROM movie
-    WHERE director = $1
-    ORDER BY movie.release_year`
-    , id
-  );
+// //add description later
+// function getMoviesByDirector(director) {
+//   return db.any(`
+//     SELECT movie.director, movie.title, movie.release_year
+//     FROM movie
+//     WHERE director = 1$
+//     ORDER BY movie.release_year`
+//     , id
+//   );
+// }
+function getAllGenreTypes() {
+  return db.any(`
+    SELECT id, genre_type
+    FROM genre`)
 }
 
-function getOneGenre(id) {
-  return db.one(`
-    SELECT genre.id, genre_type, movie.title
+function getMoviesByGenre(id) {
+  return db.any(`
+    SELECT genre.id, genre.genre_type AS type, movie.title
     FROM genre
     JOIN movie_genre
     ON genre.id = movie_genre.genre_id
@@ -61,13 +66,7 @@ function createOne (entry) {
 module.exports = {
   getAllMovies,
   getOneMovie,
-  getOneDirector,
-  getOneGenre
+  // getMoviesByDirector,
+  getAllGenreTypes,
+  getMoviesByGenre,
 }
-    // SELECT movie.id, movie.title, movie.director, movie.release_year, movie_genre.genre_id, genre.genre_type
-    // FROM movie
-    // JOIN movie_genre
-    // ON movie.id = movie_genre.movie_id
-    // JOIN genre
-    // ON movie_genre.genre_id = genre.id
-    // WHERE movie.id = $1
