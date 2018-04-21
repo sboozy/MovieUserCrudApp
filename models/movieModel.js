@@ -4,7 +4,7 @@ const db = require ('../config/connection');
 function getAllMovies() {
   // console.log("this is db:", db.tx);
   return db.any(`
-    SELECT DISTINCT movie.id, title, director, release_year
+    SELECT DISTINCT movie.id, title, director, release_year, description
     FROM movie
     JOIN movie_genre
     ON movie.id = movie_genre.movie_id
@@ -15,7 +15,7 @@ function getAllMovies() {
 //add description later
 function getOneMovie(id) {
   return db.one(`
-    SELECT movie.id, movie.title, movie.director, movie.release_year, movie_genre.genre_id, genre.genre_type
+    SELECT movie.id, movie.title, movie.director, movie.release_year, movie.description, movie_genre.genre_id, genre.genre_type
     FROM movie
     JOIN movie_genre
     ON movie.id = movie_genre.movie_id
@@ -40,7 +40,8 @@ function getOneMovie(id) {
 function getAllGenreTypes() {
   return db.any(`
     SELECT id, genre_type
-    FROM genre`)
+    FROM genre
+    ORDER BY genre_type ASC`)
 }
 
 function getMoviesByGenre(id) {
@@ -56,11 +57,32 @@ function getMoviesByGenre(id) {
   );
 }
 
-function createOne (entry) {
-  db.one(`INSERT INTO movie (title, director, release_year, description, genre_id)
-      VALUES ($/title/, $/director/, $/release_year/, $/description/, genre_id)
-      RETURNING *
-      `, entry)
+function createMovieEntry (movie) {
+  return db.one(`INSERT INTO movie (title, director, release_year, description)
+    VALUES ($/title/, $/director/, $/release_year/, $/description/)
+    RETURNING *
+    `, movie
+  )
+}
+
+function createGenre (genre) {
+  return db.one(`
+  INSERT INTO genre (genre_type)
+  VALUES ($/genre_type/)
+  RETURNING *
+  `, genre
+  )
+}
+
+function updateMovie (movie) {
+  return db.one(`
+    UPDATE movie
+    SET title = $/title/, director = $/director/, release_year = $/release_year/,
+    description = $/description/
+    WHERE id = $/id/
+    RETURNING *
+    `, movie
+  )
 }
 
 module.exports = {
@@ -69,4 +91,7 @@ module.exports = {
   // getMoviesByDirector,
   getAllGenreTypes,
   getMoviesByGenre,
+  createMovieEntry,
+  createGenre,
+  updateMovie,
 }

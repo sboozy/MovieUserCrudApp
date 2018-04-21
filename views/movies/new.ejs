@@ -1,0 +1,30 @@
+<% include ../partials/boilerplate %>
+
+
+<h2>Create Form</h2>
+
+<p><%= %></p>
+
+  <div class="form">
+   <form action="/movies" method="POST">
+     <input type="text" name="title" placeholder="Movie Title"> <br>
+     <input type="text" name="director" placeholder="Director"> <br>
+     <input type="text" name="release_year" placeholder="Year Released"> <br>
+     <textarea type="textarea" name="description" rows="8" placeholder="Brief Description"></textarea> <br>
+     <select name="genre_type">
+      <% genres.forEach((genre) => { %>
+        <option value="<%= genre.id %>"><%= genre.genre_type %></option>
+      <% }) %>
+     </select>
+     <input type="submit" value="add Movie">
+   </form>
+
+  <div>
+    <a href="/movies">Back to Movies</a>
+  </div>
+
+
+</div>
+
+
+<% include ../partials/end %>

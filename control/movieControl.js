@@ -10,7 +10,7 @@ function getAll(req, res, next) {
   })
   .catch(err => {
     next(err);
-  });
+  })
 }
 
 function getMovie(req, res, next) {
@@ -23,7 +23,7 @@ function getMovie(req, res, next) {
   .catch(err => {
     // console.log('I caught an error inside getMovie')
     next(err);
-  });
+  })
 }
 
 // function getDirector(req, res, next) {
@@ -42,7 +42,7 @@ function getAllGenres (req, res, next) {
   })
   .catch(err => {
     next(err);
-  });
+  })
 }
 
 function getOneGenre (req, res, next) {
@@ -53,7 +53,43 @@ function getOneGenre (req, res, next) {
   })
   .catch(err => {
     next(err);
-  });
+  })
+}
+
+function createMovie (req, res, next) {
+  console.log(req.body)
+  movieDB.createMovieEntry(req.body)
+  .then(data => {
+    console.log(data);
+    res.locals.newMovie = data;
+    next();
+  })
+  .catch(err => {
+    next(err);
+  })
+}
+
+function createGenre (req, res, next) {
+  movieDB.createGenre(req.body.genre_type)
+  .then(data => {
+    res.locals.genres = data;
+    next()
+  })
+  .catch(err => {
+    next(err);
+  })
+}
+
+function editMovie (req, res, next) {
+  req.body.id = req.params.id
+  movieDB.updateMovie(req.body)
+  .then(data => {
+    res.locals.movie = data;
+    next()
+  })
+  .catch(err => {
+    next(err);
+  })
 }
 
 module.exports = {
@@ -62,6 +98,12 @@ module.exports = {
   // getDirector,
   getAllGenres,
   getOneGenre,
+  createMovie,
+  createGenre,
 }
 
-
+     // <select name="genre_type">
+     //   <% genres.forEach((genre) => { %>
+     //     <option value="<%= genre.id %>"><%= genre.genre_type %></option>
+     //   <% }) %>
+     // </select> <br>
