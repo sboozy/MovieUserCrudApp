@@ -1,11 +1,11 @@
 const movieDB = require('../models/movieModel');
 
-function getAll(req, res, next) {
+function getAllMovies(req, res, next) {
   // console.log('gonna query the DB');
-  movieDB.getAllMovies()
+  movieDB.getAllDBMovies()
   .then(data => {
-    // console.log('DB queried!')
     res.locals.movies = data;
+    // console.log(data)
     next();
   })
   .catch(err => {
@@ -13,29 +13,21 @@ function getAll(req, res, next) {
   })
 }
 
-function getMovie(req, res, next) {
+function getMovieByID(req, res, next) {
   // console.log(req.params.id);
-  movieDB.getOneMovie(req.params.id)
+  movieDB.getOneDBMovie(req.params.id)
   .then(data => {
     res.locals.movie = data;
     next();
   })
   .catch(err => {
-    // console.log('I caught an error inside getMovie')
     next(err);
   })
 }
 
-// function getDirector(req, res, next) {
-//   movieDB.getMoviesByDirector(req.params.director)
-//   .then(data => {
-//     res.locals.director = data;
-//     next()
-//   })
-// }
-
 function getAllGenres (req, res, next) {
-  movieDB.getAllGenreTypes()
+  console.log('getAllGenres happened')
+  movieDB.getAllDBGenres()
   .then(data => {
     res.locals.genres = data;
     next();
@@ -45,8 +37,8 @@ function getAllGenres (req, res, next) {
   })
 }
 
-function getOneGenre (req, res, next) {
-  movieDB.getMoviesByGenre(req.params.id)
+function getGenreByID (req, res, next) {
+  movieDB.getDBMoviesInOneGenre(req.params.id)
   .then(data => {
     res.locals.genre = data;
     next();
@@ -56,12 +48,14 @@ function getOneGenre (req, res, next) {
   })
 }
 
+
+
 function createMovie (req, res, next) {
-  console.log(req.body)
-  movieDB.createMovieEntry(req.body)
-  .then(data => {
-    console.log(data);
-    res.locals.newMovie = data;
+  console.log('---->movieControl', req.body)
+  movieDB.createMovieInDB(req.body)
+  .then(newMovie => {
+    // res.locals.movieID = newMovie;
+    console.log('thennning!')
     next();
   })
   .catch(err => {
@@ -69,41 +63,35 @@ function createMovie (req, res, next) {
   })
 }
 
-function createGenre (req, res, next) {
-  movieDB.createGenre(req.body.genre_type)
-  .then(data => {
-    res.locals.genres = data;
-    next()
-  })
-  .catch(err => {
-    next(err);
-  })
-}
+// function createGenre (req, res, next) {
+//   movieDB.createGenre(req.body.genre_type)
+//   .then(data => {
+//     console.log('we have successfully created a genre');
+//     res.locals.genres = data;
+//     next()
+//   })
+//   .catch(err => {
+//     next(err);
+//   })
+// }
 
-function editMovie (req, res, next) {
-  req.body.id = req.params.id
-  movieDB.updateMovie(req.body)
-  .then(data => {
-    res.locals.movie = data;
-    next()
-  })
-  .catch(err => {
-    next(err);
-  })
-}
+// function editMovie (req, res, next) {
+//   req.body.id = req.params.id
+//   movieDB.updateMovieInDB(req.body)
+//   .then(data => {
+//     res.locals.movie = data;
+//     next()
+//   })
+//   .catch(err => {
+//     next(err);
+//   })
+// }
 
 module.exports = {
-  getAll,
-  getMovie,
-  // getDirector,
+  getAllMovies,
+  getMovieByID,
   getAllGenres,
-  getOneGenre,
+  getGenreByID,
   createMovie,
-  createGenre,
+  // createGenre,
 }
-
-     // <select name="genre_type">
-     //   <% genres.forEach((genre) => { %>
-     //     <option value="<%= genre.id %>"><%= genre.genre_type %></option>
-     //   <% }) %>
-     // </select> <br>

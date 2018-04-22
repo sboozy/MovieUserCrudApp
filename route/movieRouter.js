@@ -13,19 +13,18 @@ function sendError(err, req, res, next){
 }
 
 movieRouter.route('/')
-  .get(movieControl.getAll, movieViewControl.sendAll, sendError)
-  .post(movieControl.createMovie, movieControl.createGenre, movieViewControl.sendCreateMovie, sendError)
+  .get(movieControl.getAllMovies, movieViewControl.sendAll, sendError)
+  .post(movieControl.createMovie, movieViewControl.handleCreateMovie, sendError)
 
 movieRouter.route('/update/:id')
-  // .get(movieControl.getMovie, movieViewControl.sendUpdatedMovie)
+  // .get(movieControl.getMovieByID, movieViewControl.sendUpdatedMovie)
 
 movieRouter.route('/movie/:id') //this :id needs the /movie bc otherwise it conflicts with the /new route below
-  .get(movieControl.getMovie, movieViewControl.sendMovie, sendError)
+  .get(movieControl.getMovieByID, movieViewControl.sendMovie, sendError)
   // .put(movieControl.editMovie, movieViewControl.redirectMovieIndex)
-  // .get(movieControl.getDirector, movieViewControl.sendDir, sendError)
 
 movieRouter.route('/new')
-  .get(movieControl.getAll, movieControl.getAllGenres, movieViewControl.sendNewMovie, sendError)
+  .get(movieControl.getAllMovies, movieControl.getAllGenres, movieViewControl.sendNewMovie, sendError)
 
 
 

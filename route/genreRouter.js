@@ -16,6 +16,6 @@ genreRouter.route('/')
   .get(movieControl.getAllGenres, movieViewControl.sendAllGenres, sendError)
 
 genreRouter.route('/:id')
-  .get(movieControl.getOneGenre, movieViewControl.sendOneGenre, sendError)
+  .get(movieControl.getGenreByID, movieViewControl.sendOneGenre, sendError)
 
 module.exports = genreRouter;

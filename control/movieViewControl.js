@@ -32,17 +32,17 @@ function sendOneGenre(req, res) {
     genre: res.locals.genre
   })
 }
-function sendCreateMovie (req, res) {
-    res.json({
-    status: 'ok you sent it',
-    genres: res.locals.newMovie
-  })
+function handleCreateMovie (req, res) {
+  console.log('made it to views')
+  res.json({newMovie: res.locals.newMovie})
+    // res.redirect('movies/')
 }
 
 function sendNewMovie(req, res) {
   res.render('movies/new', {
     movies: res.locals.movies
   })
+  // console.log(res.locals.movies);
 }
 
 function sendUpdatedMovie(req, res) {
@@ -61,7 +61,7 @@ module.exports = {
   // sendDir,
   sendAllGenres,
   sendOneGenre,
-  sendCreateMovie,
+  handleCreateMovie,
   sendNewMovie,
   redirectMovieIndex,
 }
