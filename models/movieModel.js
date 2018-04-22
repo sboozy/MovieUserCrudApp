@@ -30,7 +30,7 @@ function getOneDBMovie(id) {
 
 function getAllDBGenres() {
   return db.any(`
-    SELECT id, genre_type, movie_genre.genre_id
+    SELECT DISTINCT id, genre_type, movie_genre.genre_id
     FROM genre
     JOIN movie_genre
     ON genre.id = movie_genre.genre_id
