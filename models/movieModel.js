@@ -4,7 +4,7 @@ const db = require ('../config/connection');
 function getAllDBMovies() {
   // console.log("this is db--->", db);
   return db.any(`
-    SELECT DISTINCT movie.id, title, director, release_year, description
+    SELECT DISTINCT movie.id, title, director, release_year, description, img_url
     FROM movie
     JOIN movie_genre
     ON movie.id = movie_genre.movie_id
@@ -16,7 +16,7 @@ function getAllDBMovies() {
 //add description later
 function getOneDBMovie(id) {
   return db.one(`
-    SELECT movie.id, movie.title, movie.director, movie.release_year, movie.description, movie_genre.genre_id, genre.genre_type
+    SELECT movie.id, movie.title, movie.director, movie.release_year, movie.description, movie.img_url, movie_genre.genre_id, genre.genre_type
     FROM movie
     JOIN movie_genre
     ON movie.id = movie_genre.movie_id
@@ -61,10 +61,9 @@ function createMovieInDB (data) {
     `, data);
 
     //Insert into join table
-    await t.one(`
+    await t.none(`
       INSERT INTO movie_genre (movie_id, genre_id)
       VALUES ($1, $2)
-      RETURNING movie_id
       `, (movieID, genre_id));  //currently not picking up genre_id even though it gets logged in req.body
 
     return movieID;

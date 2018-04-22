@@ -12,7 +12,8 @@ CREATE TABLE movie (
   title TEXT,
   director VARCHAR(255),
   release_year INT,
-  description TEXT
+  description TEXT,
+  img_url TEXT
   );
 
 CREATE TABLE genre (

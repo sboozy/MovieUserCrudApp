@@ -1,0 +1,16 @@
+.movie-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+}
+
+.movie-poster {
+  width: 200px;
+  margin: auto;
+}
+
+.movie-title {
+  text-align: center;
+}

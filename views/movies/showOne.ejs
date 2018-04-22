@@ -1,12 +1,15 @@
 <% include ../partials/boilerplate %>
 
 <h1>All info for One Movie</h1>
-
+<img src="<%= movie.img_url %>" class="movie-poster">
 <h2><%= movie.title %></h2>
-<h3><%= movie.director%></h3>
-<h3><%= movie.release_year%></h3>
+<h3>Directed By: <%= movie.director%></h3>
+<h3>Released: <%= movie.release_year%></h3>
+<p><%= movie.desciption %></p>
 
-<!-- need to deal with showing all genres here -->
 
 
 <% include ../partials/end %>
+
+
+

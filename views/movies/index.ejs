@@ -2,10 +2,15 @@
 
 <h1>MovieApp - show all movies</h1>
 
-<p><% movies.forEach((movie) => { %>
+
+<div class="movie-container">
+<% movies.forEach((movie) => { %>
   <a href="movies/movie/<%= movie.id%>">
-    <h3><%= movie.title %></h3></a>
+    <!-- <h3 class="movie-title"><%= movie.title %></h3> -->
+    <img src="<%= movie.img_url %>" class="movie-poster"></a>
   <% }) %>
-</p>
+</div>
+
+
 
 <% include ../partials/end %>
