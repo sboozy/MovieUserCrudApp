@@ -1,5 +1,6 @@
 -- connect to database
-\c movie_db
+-- take connect db out for Heroku deployment
+-- \c movie_db
 
 -- blow out any old tables with the same name
 DROP TABLE IF EXISTS movie CASCADE;

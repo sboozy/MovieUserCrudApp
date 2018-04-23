@@ -1,5 +1,6 @@
 --connect to database
-\c movie_db
+-- take connect db out for Heroku deployment
+-- \c movie_db
 
 INSERT INTO movie (title, director, release_year, description, img_url)
 VALUES
