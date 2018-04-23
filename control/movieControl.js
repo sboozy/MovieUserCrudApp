@@ -66,7 +66,9 @@ function createMovie (req, res, next) {
 
 function editMovie (req, res, next) {
   req.body.id = req.params.id
+  console.log(req.body)
   movieDB.updateMovieInDB({
+    id: req.body.id,
     title: req.body.title,
     director: req.body.director,
     release_year: req.body.release_year,

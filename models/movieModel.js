@@ -70,18 +70,32 @@ function createMovieInDB (data) {
 }
 
 function updateMovieInDB (movie) {
-  return db.one(`
+  return db.task (t => {
+    return t.one(`
     UPDATE movie
     SET
     title = $/title/,
     director = $/director/,
     release_year = $/release_year/,
-    genre_id = $/genre_id/,
     description = $/description/
     WHERE id = $/id/
-    RETURNING *
+    RETURNING movie.id
     `, movie
   )
+  .then(movieID => {
+    return t.any(`
+      UPDATE movie_genre
+      SET
+      genre_id = $/genre_id/
+      WHERE id = movieID[0.id]
+      `)
+  })
+  })
+}
+
+function deleteMovieInDB (id) {
+  return db.none(`
+    DELETE FROM `)
 }
 
 module.exports = {
