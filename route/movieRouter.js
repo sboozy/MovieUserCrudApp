@@ -16,18 +16,18 @@ movieRouter.route('/')
   .get(movieControl.getAllMovies, movieViewControl.sendAll, sendError)
   .post(movieControl.createMovie, movieViewControl.handleCreateMovie, sendError)
 
-
-  // .get(movieControl.getMovieByID, movieViewControl.sendUpdatedMovie)
-
-movieRouter.route('/movie/:id') //this :id needs the /movie bc otherwise it conflicts with the /new route below
-  .get(movieControl.getMovieByID, movieViewControl.sendMovie, sendError)
-  .put(movieControl.editMovie)
-
-movieRouter.route('/movie/:id/update')
-.get(movieControl.getMovieByID, movieControl.getAllGenres, movieViewControl.sendUpdatedMovie)
-
 movieRouter.route('/new')
   .get(movieControl.getAllMovies, movieControl.getAllGenres, movieViewControl.sendNewMovie, sendError)
+
+movieRouter.route('/:id') //this :id needs the /movie bc otherwise it conflicts with the /new route below
+  .get(movieControl.getMovieByID, movieViewControl.sendMovie, sendError)
+  .put(movieControl.editMovie)
+  .delete(movieControl.deleteMovie, movieViewControl.redirectMovieIndex, sendError)
+
+movieRouter.route('/:id/update')
+.get(movieControl.getMovieByID, movieControl.getAllGenres, movieViewControl.sendUpdatedMovie)
+
+
 
 
 

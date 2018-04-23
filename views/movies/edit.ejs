@@ -4,7 +4,7 @@
 <h2>Edit Form</h2>
 
   <div class="form">
-   <form action="/movies/movie/<%= movie.id%>?_method=PUT" method="POST">  <!-- name has to match column in table -->
+   <form action="/movies/<%= movie.id%>?_method=PUT" method="POST">  <!-- name has to match column in table -->
      <input type="text" name="title" value="<%= movie.title %>">
      <br>
      <input type="text" name="director" value="<%= movie.director %>">
@@ -19,6 +19,10 @@
       <% }) %>
      </select>
      <input type="submit" value="Edit Movie">
+   </form>
+
+   <form action="/movies/<%= movie.id %>?_method=DELETE" method="POST">
+     <button type="submit">DELETE MOVIE</button>
    </form>
 
 

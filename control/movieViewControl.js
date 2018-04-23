@@ -50,7 +50,7 @@ function sendUpdatedMovie(req, res) {
 
 function redirectMovieIndex(req, res) {
   movie = res.locals.newMovie
-  res.redirect('movies/')
+  res.redirect('/movies')
 }
 
 

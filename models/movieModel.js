@@ -51,7 +51,6 @@ function getDBMoviesInOneGenre(id) {
 }
 
 function createMovieInDB (data) {
-
 //pg promise TASK
   return db.task (t => {
     return t.any(`
@@ -71,7 +70,7 @@ function createMovieInDB (data) {
 
 function updateMovieInDB (movie) {
   return db.task (t => {
-    return t.one(`
+    return t.any(`
     UPDATE movie
     SET
     title = $/title/,
@@ -83,19 +82,22 @@ function updateMovieInDB (movie) {
     `, movie
   )
   .then(movieID => {
-    return t.any(`
+    return t.none(`
       UPDATE movie_genre
       SET
-      genre_id = $/genre_id/
-      WHERE id = movieID[0.id]
-      `)
-  })
+      genre_id = $/g_id/
+      WHERE movie_id = $/m_id/
+      `, {g_id: movie.genre_id, m_id: movieID.id})
+    })
   })
 }
 
 function deleteMovieInDB (id) {
   return db.none(`
-    DELETE FROM `)
+      DELETE FROM movie_genre USING movie
+      WHERE movie_id = $1
+      AND id = $1
+      `, id)
 }
 
 module.exports = {
@@ -105,4 +107,5 @@ module.exports = {
   getDBMoviesInOneGenre,
   createMovieInDB,
   updateMovieInDB,
+  deleteMovieInDB,
 }

@@ -76,23 +76,22 @@ function editMovie (req, res, next) {
     description: req.body.description
   })
   .then (movie => {
-        res.redirect(`/movie/${req.body.id}`);
+        res.redirect(`/movies/${req.body.id}`);
   })
   .catch(err => {
     next(err);
   })
 }
-// function createGenre (req, res, next) {
-//   movieDB.createGenre(req.body.genre_type)
-//   .then(data => {
-//     console.log('we have successfully created a genre');
-//     res.locals.genres = data;
-//     next()
-//   })
-//   .catch(err => {
-//     next(err);
-//   })
-// }
+
+function deleteMovie (req, res, next) {
+  movieDB.deleteMovieInDB(req.params.id)
+  .then(() => {
+    next()
+  })
+  .catch(err => {
+    next(err);
+  })
+}
 
 
 
@@ -103,4 +102,5 @@ module.exports = {
   getGenreByID,
   createMovie,
   editMovie,
+  deleteMovie,
 }
