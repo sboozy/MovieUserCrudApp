@@ -15,9 +15,6 @@ function sendMovie(req, res) {
   // })
 }
 
-// function sendDir(req, res) {
-//   res.json(res.locals.director)
-// }
 function sendAllGenres(req, res) {
     // res.json(res.locals.genres)
   res.render('genres/index', {
@@ -26,7 +23,6 @@ function sendAllGenres(req, res) {
 }
 
 function sendOneGenre(req, res) {
-  // res.json(res.locals.genre)
   // console.log(res.locals.genre);
   res.render('genres/showOne', {
     genre: res.locals.genre

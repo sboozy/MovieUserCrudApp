@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', (req, res) => {
-  res.send('Its movie time people!');
+  res.render('home');
 });
 
 app.use('/movies', movieRouter);

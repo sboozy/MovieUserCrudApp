@@ -53,7 +53,7 @@ function getDBMoviesInOneGenre(id) {
 function createMovieInDB (data) {
   return db.tx('movieTransaction', async (t) => {
 
-    // inserts a movie entry and gets the movie.id
+    // inserts a movie entry and gets the id
     const movieID = await t.one(`
       INSERT INTO movie (title, director, release_year, description)
       VALUES ($/title/, $/director/, $/release_year/, $/description/)
