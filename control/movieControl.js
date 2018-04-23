@@ -63,6 +63,23 @@ function createMovie (req, res, next) {
   })
 }
 
+function editMovie (req, res, next) {
+  movieDB.getOneDBMovie(req.params.id)
+  .then(movie => movie.updateMovieInDB({
+    title: req.body.title,
+    director: req.body.director,
+    release_year: req.body.release_year,
+    genre_id: req.body.genre_id,
+    description: req.body.description
+  }))
+  .then (movie => {
+        res.locals.movie = movie;
+    next()
+  })
+  .catch(err => {
+    next(err);
+  })
+}
 // function createGenre (req, res, next) {
 //   movieDB.createGenre(req.body.genre_type)
 //   .then(data => {
@@ -75,17 +92,7 @@ function createMovie (req, res, next) {
 //   })
 // }
 
-// function editMovie (req, res, next) {
-//   req.body.id = req.params.id
-//   movieDB.updateMovieInDB(req.body)
-//   .then(data => {
-//     res.locals.movie = data;
-//     next()
-//   })
-//   .catch(err => {
-//     next(err);
-//   })
-// }
+
 
 module.exports = {
   getAllMovies,
@@ -93,5 +100,5 @@ module.exports = {
   getAllGenres,
   getGenreByID,
   createMovie,
-  // createGenre,
+  editMovie,
 }

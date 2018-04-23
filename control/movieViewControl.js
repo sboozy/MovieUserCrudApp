@@ -29,9 +29,9 @@ function sendOneGenre(req, res) {
   })
 }
 function handleCreateMovie (req, res) {
-  console.log('made it to views')
-  res.json({newMovie: res.locals.newMovie})
-    // res.redirect('movies/')
+  // console.log('made it to views')
+  // res.json({newMovie: res.locals.newMovie})
+    res.redirect('movies/')
 }
 
 function sendNewMovie(req, res) {

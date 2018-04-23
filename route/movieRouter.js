@@ -17,6 +17,7 @@ movieRouter.route('/')
   .post(movieControl.createMovie, movieViewControl.handleCreateMovie, sendError)
 
 movieRouter.route('/update/:id')
+  .put(movieControl.editMovie, movieViewControl.sendMovie, sendError)
   // .get(movieControl.getMovieByID, movieViewControl.sendUpdatedMovie)
 
 movieRouter.route('/movie/:id') //this :id needs the /movie bc otherwise it conflicts with the /new route below

@@ -6,7 +6,7 @@
 <div class="movie-container">
 <% movies.forEach((movie) => { %>
   <a href="movies/movie/<%= movie.id%>">
-    <!-- <h3 class="movie-title"><%= movie.title %></h3> -->
+    <h3 class="movie-info">Released: <%= movie.release_year%> Directed By: <%=movie.director%></h3>
     <img src="<%= movie.img_url %>" class="movie-poster"></a>
   <% }) %>
 </div>

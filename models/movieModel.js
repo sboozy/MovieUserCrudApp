@@ -51,38 +51,38 @@ function getDBMoviesInOneGenre(id) {
 }
 
 function createMovieInDB (data) {
-  return db.tx('movieTransaction', async (t) => {
 
-    // inserts a movie entry and gets the id
-    const movieID = await t.one(`
+//pg promise TASK
+  return db.task (t => {
+    return t.any(`
       INSERT INTO movie (title, director, release_year, description)
       VALUES ($/title/, $/director/, $/release_year/, $/description/)
-      RETURNING id
-    `, data);
-
-    //Insert into join table
-    await t.none(`
-      INSERT INTO movie_genre (movie_id, genre_id)
-      VALUES ($1, $2)
-      `, (movieID, genre_id));  //currently not picking up genre_id even though it gets logged in req.body
-
-    return movieID;
+      RETURNING movie.id
+      `, data)
+    .then( movieID => {
+      console.log(movieID)
+      return t.any(`
+        INSERT INTO movie_genre (movie_id, genre_id)
+        VALUES ($/m_id/, $/g_id/)
+        `, {m_id:movieID[0].id, g_id: data.genre_id})
+    })
   })
 }
 
-// function updateMovieInDB (movie) {
-//   return db.one(`
-//     UPDATE movie
-//     SET
-//     title = $/title/,
-//     director = $/director/,
-//     release_year = $/release_year/,
-//     description = $/description/
-//     WHERE id = $/id/
-//     RETURNING *
-//     `, movie
-//   )
-// }
+function updateMovieInDB (movie) {
+  return db.one(`
+    UPDATE movie
+    SET
+    title = $/title/,
+    director = $/director/,
+    release_year = $/release_year/,
+    genre_id = $/genre_id/,
+    description = $/description/
+    WHERE id = $/id/
+    RETURNING *
+    `, movie
+  )
+}
 
 module.exports = {
   getAllDBMovies,
@@ -90,5 +90,5 @@ module.exports = {
   getAllDBGenres,
   getDBMoviesInOneGenre,
   createMovieInDB,
-  // updateMovieInDB,
+  updateMovieInDB,
 }
