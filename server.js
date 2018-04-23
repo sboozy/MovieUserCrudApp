@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const movieRouter = require('./route/movieRouter');
 const genreRouter = require('./route/genreRouter');
@@ -13,6 +14,7 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(methodOverride('_method'));
 
 
 app.set('views', path.join(__dirname, 'views'));
