@@ -42,7 +42,10 @@ function sendNewMovie(req, res) {
 }
 
 function sendUpdatedMovie(req, res) {
-
+  console.log(res.locals.movie);
+  res.render('movies/edit', {
+    movie: res.locals.movie
+  })
 }
 
 function redirectMovieIndex(req, res) {
@@ -54,10 +57,10 @@ function redirectMovieIndex(req, res) {
 module.exports = {
   sendAll,
   sendMovie,
-  // sendDir,
   sendAllGenres,
   sendOneGenre,
   handleCreateMovie,
   sendNewMovie,
   redirectMovieIndex,
+  sendUpdatedMovie,
 }

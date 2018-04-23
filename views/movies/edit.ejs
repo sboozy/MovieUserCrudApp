@@ -3,25 +3,24 @@
 
 <h2>Edit Form</h2>
 
-<p><%= %></p>
-
   <div class="form">
    <form action="/movies/movie/<%= movie.id%>?_method=PUT" method="POST">  <!-- name has to match column in table -->
-     <input type="text" name="title" placeholder="Movie Title">
+     <input type="text" name="title" value="<%= movie.title %>">
      <br>
-     <input type="text" name="director" placeholder="Director">
+     <input type="text" name="director" value="<%= movie.director %>">
      <br>
-     <input type="text" name="release_year" placeholder="Year Released">
+     <input type="text" name="release_year" value="<%= movie.release_year %>">
      <br>
-     <textarea type="textarea" name="description" rows="8" placeholder="Brief Description"></textarea>
+     <textarea type="textarea" name="description" rows="8"><%= movie.description %></textarea>
      <br>
      <select name="genre_id">
       <% genres.forEach((genre) => { %>
         <option value="<%= genre.id %>"><%= genre.genre_type %></option>
       <% }) %>
      </select>
-     <input type="submit" value="add Movie">
+     <input type="submit" value="Edit Movie">
    </form>
+
 
   <div>
     <a href="/movies">Back to Movies</a>

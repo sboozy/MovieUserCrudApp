@@ -18,6 +18,7 @@ function getMovieByID(req, res, next) {
   movieDB.getOneDBMovie(req.params.id)
   .then(data => {
     res.locals.movie = data;
+    console.log(res.locals.movie);
     next();
   })
   .catch(err => {
@@ -54,8 +55,8 @@ function createMovie (req, res, next) {
   console.log('---->movieControl', req.body)
   movieDB.createMovieInDB(req.body)
   .then(newMovie => {
-    // res.locals.movieID = newMovie;
-    console.log('thennning!')
+    res.locals.movieID = newMovie;
+    // console.log('thennning!')
     next();
   })
   .catch(err => {
@@ -64,17 +65,16 @@ function createMovie (req, res, next) {
 }
 
 function editMovie (req, res, next) {
-  movieDB.getOneDBMovie(req.params.id)
-  .then(movie => movie.updateMovieInDB({
+  req.body.id = req.params.id
+  movieDB.updateMovieInDB({
     title: req.body.title,
     director: req.body.director,
     release_year: req.body.release_year,
     genre_id: req.body.genre_id,
     description: req.body.description
-  }))
+  })
   .then (movie => {
-        res.locals.movie = movie;
-    next()
+        res.redirect(`/movie/${req.body.id}`);
   })
   .catch(err => {
     next(err);
