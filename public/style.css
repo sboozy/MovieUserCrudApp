@@ -148,3 +148,18 @@ h3 {
   align-content: center;
   margin-bottom: 25px;
 }
+
+form {
+  border-radius: 5px;
+  padding-bottom: 20px;
+  margin: 20px;
+
+}
+
+input[type=text], select, textarea {
+  width: 35%;
+}
+.movie-description {
+  width: 50%;
+  font-style: italic;
+}

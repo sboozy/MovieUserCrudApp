@@ -1,6 +1,5 @@
 const db = require ('../config/connection');
 
-//add description later
 function getAllDBMovies() {
   // console.log("this is db--->", db);
   return db.any(`
@@ -13,7 +12,6 @@ function getAllDBMovies() {
     `)
 }
 
-//add description later
 function getOneDBMovie(id) {
   return db.one(`
     SELECT movie.id, movie.title, movie.director, movie.release_year, movie.description, movie.img_url, movie_genre.genre_id, genre.genre_type
