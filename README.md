@@ -1,15 +1,14 @@
 
 #AKA MovieMinder AKA FilmFile AKA this name is a WIP  
   
+  You can demo it here: [MovieApp](https://sboozy-movie-app.herokuapp.com/)
 ##IDEA  
 I watch a ton of movies - good, bad... I really don't descriminate.  And many times I have found myself starting a movie, only to get 20 minutes into it and realize I have definitely seen this movie before. So here is where this app comes in.  
   
 ##OVERVIEW  
-This is an app where a user can make entries on movies they have seen.  The user can view all the movies, can edit previous entries or delete an entire entry (you know, maybe if they decide they no longer want people to know how much they enjoyed Twilight) They can also see a list of movies by Genre or see all all Genres. 
+This is an app where a user can make entries on movies they have seen.  The user can view all the movies, can edit previous entries or delete an entire entry (you know, maybe if they decide they no longer want people to know how much they enjoyed Twilight.) They can also see a list of movies by Genre or see a list of all Genres. 
   
-##PAGES - WIREFRAMES  
-Login/Register  
-![](images/login.JPG )  
+##PAGES - WIREFRAMES   
 See all your movies 
 ![](images/allMovies.JPG )     
 Submit a new movie 
@@ -40,7 +39,7 @@ Tables with data in PSQL:
 ![](images/DeleteMovie.png)
 
 
-##MVP
+##POST - MVP
 -Use of API to auto-populate forms:  Currently a user cannot assign an image URL so any new movies that are added to the db won't have awesome movie posters.  
 
 -Authenticating a user and saving a session: My hope is to verify a user and allow them to store their personal movie database and have access to see a "friend's" personal database.   
