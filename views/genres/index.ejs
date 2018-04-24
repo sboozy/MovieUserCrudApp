@@ -1,11 +1,14 @@
 <% include ../partials/boilerplate %>
+<% include ../partials/nav %>
 
+<div class="main">
 <h1>MovieApp - show all Genres</h1>
 
 <p><% genres.forEach((genre) => { %>
   <a href="genre/<%= genre.id%>">
-    <h3><%= genre.genre_type %></h3></a>
+    <h3 class="genre-list"><%= genre.genre_type %></h3></a>
   <% }) %>
 </p>
+</div>
 
 <% include ../partials/end %>

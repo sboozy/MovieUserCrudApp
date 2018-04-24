@@ -1,16 +1,23 @@
 <% include ../partials/boilerplate %>
+<% include ../partials/nav %>
 
 <h1>MovieApp - show all movies</h1>
 <a href="movies/new">
-<button>Add New Movie</button> </a>
+<button class="add-movie-button">Add New Movie</button> </a>
 
 <div class="movie-container">
 <% movies.forEach((movie) => { %>
-  <a href="/movies/<%= movie.id%>">
-    <h3 class="movie-info">Released: <%= movie.release_year%> Directed By: <%=movie.director%></h3>
-    <img src="<%= movie.img_url %>" class="movie-poster">
-  </a>
-  <a href="/movies/<%= movie.id%>/update"><button>Edit Movie</button></a>
+  <div class="single-movie-info">
+    <a href="/movies/<%= movie.id%>">
+      <h3 class="movie-info">Released: <%= movie.release_year%>
+        <br>
+         Directed By: <%=movie.director%></h3>
+        <br>
+      <img src="<%= movie.img_url %>" class="movie-poster">
+    </a>
+    <br>
+    <a href="/movies/<%= movie.id%>/update" class="add-edit-button"><button>Edit Movie</button></a>
+  </div>
   <% }) %>
 
 </div>
